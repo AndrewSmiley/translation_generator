@@ -25,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="translator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7111111">
+            <state vertical-scroll-proportion="0.0">
               <caret line="91" column="43" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
               <folding>
                 <element signature="e#23#38#0" expanded="true" />
@@ -47,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="membership.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="membership.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/membership.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="17.088888">
               <caret line="1522" column="19" selection-start-line="1522" selection-start-column="19" selection-end-line="1522" selection-end-column="19" />
               <folding />
             </state>
@@ -534,14 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/membership.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1522" column="19" selection-start-line="1522" selection-start-column="19" selection-end-line="1522" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lego_translations_zh-CN.xlf">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-30.296297">
@@ -560,11 +552,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7111111">
+        <state vertical-scroll-proportion="0.0">
           <caret line="91" column="43" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
           <folding>
             <element signature="e#23#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/membership.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="17.088888">
+          <caret line="1522" column="19" selection-start-line="1522" selection-start-column="19" selection-end-line="1522" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
