@@ -13,7 +13,7 @@ def fetch_translation(english_text):
     print r.json().get('responseData').get('translatedText')
     return r.json().get('responseData').get('translatedText')
 
-def process_translation_text(txt):
+def process_translation_text(txt, should_translate, insert_value):
     #just to unescape
     txt=HTMLParser.HTMLParser().unescape(txt)
     if "<" in txt:
@@ -24,8 +24,8 @@ def process_translation_text(txt):
         values = txt.split("<line>")
         split_values=[]
         for s in values:
-            if "</line>" in s:
-                new = s.split("</line>")
+            if "</%s>" % tag_name in s:
+                new = s.split("</%s>" % tag_name)
                 split_values.append(new[0])
             else:
                 if len(s) > 1:
@@ -36,14 +36,20 @@ def process_translation_text(txt):
         print split_values
         translated_values=[]
         for value in split_values:
-            translated_values.append(fetch_translation(value))
-            translated_values.append('<{0}>{1}</{2}>'.format(tag_name, fetch_translation(value),tag_name))
+            # translated_values.append(fetch_translation(value))
+            if should_translate:
+                translated_values.append('&lt;{0}&lg;{1}&lt;/{2}&gt;'.format(tag_name, fetch_translation(value),tag_name))
+            else:
+                translated_values.append('&lt;{0}&lg;{1}&lt;/{2}&gt;'.format(tag_name, insert_value,tag_name))
 
-        print(translated_values)
+        # print(translated_values)
         #do what we need to get the translations
-        return cgi.escape("".join(translated_values))
+        return "".join(translated_values)
     else:
-        return fetch_translation(txt)
+        if should_translate:
+            return fetch_translation(txt)
+        else:
+            return insert_value
 
 
 def parse(e_tree):
@@ -53,11 +59,12 @@ def parse(e_tree):
             print(child.getchildren()[0].text)
             try:
                 # print 'counter value : {0}'.format(counter)
-                child.getchildren()[1].text=process_translation_text(child.getchildren()[0].text)
+                if "SalePanels" in child.attrib.get('extradata')  or child.attrib.get('extradata')[0:2] == "TD":
+                    child.getchildren()[1].text=process_translation_text(child.getchildren()[0].text, True, "u6c64\u6c64\u6c64")
                 # child.getchildren()[1].text = "\u6c64"
             except:
                 print "Adding soup"
-                child.getchildren()[1].text = "\u6c64\u6c64\u6c64"
+                child.getchildren()[1].text = process_translation_text(child.getchildren()[0].text, False, "u6c64\u6c64\u6c64")
         else:
             parse(child)
 # unescaped="&lt;line&gt;FUCK YOU FUCK YOU FUCK YOU FUCK YOU&lt;/line&gt;"
@@ -87,9 +94,9 @@ def parse(e_tree):
 # print(r.status_code)
 
 #this is the part we actually need
-e = ElementTree.parse('lego_translations_zh-CN.xlf').getroot()
+e = ElementTree.parse('membership.xml').getroot()
 parse(e)
-output_file = open( 'membership.xml', 'w' )
+output_file = open( 'shit.xlf', 'w' )
 output_file.write( '<?xml version="1.0"?>' )
 output_file.write( ElementTree.tostring( e ) )
 output_file.close()
