@@ -59,40 +59,15 @@ def parse(e_tree):
             print(child.getchildren()[0].text)
             try:
                 # print 'counter value : {0}'.format(counter)
-                if "SalePanels" in child.attrib.get('extradata')  or child.attrib.get('extradata')[0:2] == "TD":
-                    child.getchildren()[1].text=process_translation_text(child.getchildren()[0].text, True, "u6c64\u6c64\u6c64")
+                # if "SalePanels" in child.attrib.get('extradata')  or child.attrib.get('extradata')[0:2] == "TD":
+                if 'MYMEMORY WARNING:' in child.getchildren()[1].text:
+                    child.getchildren()[1].text=process_translation_text(child.getchildren()[0].text, False, "\u6c64\u6c64\u6c64")
                 # child.getchildren()[1].text = "\u6c64"
             except:
                 print "Adding soup"
-                child.getchildren()[1].text = process_translation_text(child.getchildren()[0].text, False, "u6c64\u6c64\u6c64")
+                child.getchildren()[1].text = process_translation_text(child.getchildren()[0].text, False, "\u6c64\u6c64\u6c64")
         else:
             parse(child)
-# unescaped="&lt;line&gt;FUCK YOU FUCK YOU FUCK YOU FUCK YOU&lt;/line&gt;"
-# escaped=HTMLParser.HTMLParser().unescape(unescaped)
-# values = escaped.split("<line>")
-# split_values=[]
-# for s in values:
-#     if "</line>" in s:
-#         new = s.split("</line>")
-#         split_values.append(new[0])
-#     else:
-#         if len(s) > 1:
-#             split_values.append(s)
-#         else:
-#             #this seems redundant
-#             continue
-#
-# print split_values
-
-
-
-
-
-
-# print(str(r.json().get('responseData').get('translatedText')))
-# print(r.json().get('resultData').get('translatedText'))
-# print(r.status_code)
-
 #this is the part we actually need
 e = ElementTree.parse('membership.xml').getroot()
 parse(e)
@@ -101,5 +76,6 @@ output_file.write( '<?xml version="1.0"?>' )
 output_file.write( ElementTree.tostring( e ) )
 output_file.close()
 
+#ok, here's just some proof of concept...
 
 
